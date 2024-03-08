@@ -26,3 +26,13 @@ class ImageBrowserApp:
         
     def browse_directory(self):
         directory_path = filedialog.askdirectory()
+        if directory_path:
+            self.image_paths = [
+                 os.path.join(directory_path, file)
+                for file in os.listdir(directory_path)
+                if file.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))
+            ]
+            if self.image_paths:
+                self.current_image_index = 0
+                self.show_image(self.current_image_index)
+                self.prev_button.config(state=tk.NORMAL)
