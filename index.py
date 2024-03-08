@@ -36,3 +36,12 @@ class ImageBrowserApp:
                 self.current_image_index = 0
                 self.show_image(self.current_image_index)
                 self.prev_button.config(state=tk.NORMAL)
+                self.next_button.config(state=tk.NORMAL)
+            else:
+                self.image_label.config(text="Nenhuma imagem encontrada")
+                
+    def show_image(self, index):
+        image_path = self.image_paths[index]
+        try:
+            image = Image.open(image_path)
+            imaga = image.resize((300, 300))
